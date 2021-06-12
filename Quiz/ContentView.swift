@@ -12,40 +12,37 @@ struct ContentView: View {
     @State private var isAlertPresented = false
     @State private var isCorrect = false
     @State private var isSheetPresented = false
-    @State private var currentQuestion = 0
+    @State private var quesInd = 0
     @State private var correctAnswers = 0
     
     var questions = [
-        Question(title: "What day of the week is it?", option1: "Monday", option2: "Saturday", option3: "Sunday", option4: "Wednesday", ans: 2),
-        Question(title: "What does YJ eat?", option1: "Broccoli", option2: "Nutella", option3: "Rice", option4: "MacBooks", ans:2),
-        Question(title: "Did Jia Chen sleep last night?", option1: "Yes", option2: "No", option3: "idk", option4: "Yes?", ans:2)
+        Question(ques: "What day of the week is it?", opt1: "Monday", opt2: "Saturday", opt3: "Sunday", opt4: "Wednesday", ans: 2),
+        Question(ques: "What does YJ eat?", opt1: "Broccoli", opt2: "Nutella", opt3: "Rice", opt4: "MacBooks", ans:2),
+        Question(ques: "Did Jia Chen sleep last night?", opt1: "Yes", opt2: "No", opt3: "idk", opt4: "Yes?", ans:2)
     ]
-    
-    
     
     var body: some View {
         VStack{
             
-            Text(questions[currentQuestion].title)
+            Text(questions[quesInd].title)
                 .padding()
             
             HStack {
                 VStack{
-                    Button(questions[currentQuestion].option1) { didTapOption(1)
-                    }
+                    Button(questions[quesInd].option1) { didTapOption(1)}
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: 150, height: 40, alignment: .center))
-                    Button(questions[currentQuestion].option2) { didTapOption(2) }
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
+                    Button(questions[quesInd].option2) { didTapOption(2) }
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: 150, height: 40, alignment: .center))
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
                 }.padding(40)
                 VStack {
-                    Button(questions[currentQuestion].option3) { didTapOption(3) }
+                    Button(questions[quesInd].option3) { didTapOption(3) }
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: 150, height: 40, alignment: .center))
-                    Button(questions[currentQuestion].option4) { didTapOption(4) }
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
+                    Button(questions[quesInd].option4) { didTapOption(4) }
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: 150, height: 40, alignment: .center))
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
                 }.padding()
             }
         }
@@ -53,10 +50,11 @@ struct ContentView: View {
             Alert(title: Text(isCorrect ? "Well done!" : "Boooo wrong"),
                   message: Text(isCorrect ? "Congratulations 🎉" : "Try harder please 😔"),
                   dismissButton: .default(Text("OK")){
-                    currentQuestion += 1
-                    if currentQuestion == questions.count {
+                    quesInd += 1
+                    
+                    if quesInd == questions.count {
                         // We finished! Show the score sheet
-                        currentQuestion = 0
+                        quesInd = 0
                         isSheetPresented = true
                     }
             })
@@ -67,7 +65,7 @@ struct ContentView: View {
     }
     
     func didTapOption(_ optionNumber: Int) {
-        if optionNumber ==  questions[currentQuestion].ans{
+        if optionNumber ==  questions[quesInd].answer{
             print("Correct!")
             isCorrect = true
             correctAnswers += 1
