@@ -31,18 +31,27 @@ struct ContentView: View {
                 VStack{
                     Button(questions[quesInd].option1) { didTapOption(1)}
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .bold))
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray).frame(width: CGFloat(questions[quesInd].maxLength), height: 45, alignment: .center))
                     Button(questions[quesInd].option2) { didTapOption(2) }
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .bold))
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray).frame(width: CGFloat(questions[quesInd].maxLength), height: 45, alignment: .center))
                 }.padding(40)
                 VStack {
                     Button(questions[quesInd].option3) { didTapOption(3) }
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .bold))
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray).frame(width: CGFloat(questions[quesInd].maxLength), height: 45, alignment: .center))
                     Button(questions[quesInd].option4) { didTapOption(4) }
                         .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 4).frame(width: CGFloat(questions[quesInd].maxLength), height: 40, alignment: .center))
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .bold))
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray).frame(width: CGFloat(questions[quesInd].maxLength), height: 45, alignment: .bottom))
+
                 }.padding()
             }
         }

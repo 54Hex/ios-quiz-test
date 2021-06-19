@@ -17,7 +17,9 @@ struct ScoreView: View {
             Color.yellow
             VStack {
                 Text("Your score was:")
+                    .font(.system(size: 16, weight: .bold))
                 Text("\(score)/\(totalScore)")
+                    .font(.system(size: 18, weight: .bold))
             }
         }
     }
